@@ -500,6 +500,7 @@
         <button onclick="filtrarVitrina('congelada')" class="filtro-btn" style="background: #1A1A2E; color: #00F5FF; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Congeladas $15</button>
         <button onclick="filtrarVitrina('litros')" class="filtro-btn" style="background: transparent; border: 1px solid #00F5FF; color: #00F5FF; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer;">Litros $60</button>
         <button onclick="filtrarVitrina('eventos')" class="filtro-btn" data-filter="eventos" style="background: transparent; border: 1px solid #FFD700; color: #FFD700; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer;">Eventos ⭐</button>
+        <button onclick="filtrarVitrina('mesa-dulces')" class="filtro-btn" style="background: transparent; border: 1px solid #FF00E5; color: #FF00E5; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer;">Mesa de Dulces 🍬</button>
       </div>
 
       <div id="grid-productos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -526,6 +527,39 @@
             </div>
             <a href="https://wa.me/525619628908?text=Hola,%20quiero%20cotizar%20servicio%20para%20evento.%20Fecha:%20%0APersonas:%20%0AProductos:%20" target="_blank" style="background: linear-gradient(90deg, #FFD700, #FF00E5); color: #0A0A0F; padding: 14px 20px; border-radius: 10px; font-weight: 900; text-decoration: none; font-size: 14px; display: block; text-align: center; box-shadow: 0 0 30px #FFD70050;">
               COTIZAR MI EVENTO
+            </a>
+          </div>
+        </div>
+
+        <!-- MESA DE DULCES PREMIUM -->
+        <div class="producto mesa-dulces" style="grid-column: span 2; background: linear-gradient(135deg, #1A1A2E 0%, #120A18 100%); border: 2px solid #FF00E5; border-radius: 16px; overflow: hidden; box-shadow: 0 0 30px #FF00E540; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 0 50px #FF00E560'" onmouseout="this.style.boxShadow='0 0 30px #FF00E540'">
+          <div style="padding: 20px 20px 0 20px;">
+            <div style="margin-bottom: 16px;">
+              <h3 style="color: #FFFFFF; font-size: 22px; font-weight: 900; margin: 0;">Mesa de Dulces</h3>
+              <div style="display:flex;gap:8px;margin:12px 0 15px 0;">
+                <img src="/assets/mesa-botanas.png" alt="Palomitas acarameladas" style="width:32%;border-radius:6px;object-fit:cover;height:90px;border:1px solid #E91E63;">
+                <img src="/assets/mesa-dulces.png" alt="Gomitas surtidas" style="width:32%;border-radius:6px;object-fit:cover;height:90px;border:1px solid #E91E63;">
+                <img src="/assets/mesa-palomitas.png" alt="Frituras" style="width:32%;border-radius:6px;object-fit:cover;height:90px;border:1px solid #E91E63;">
+              </div>
+              <p style="color: #FFFFFF60; font-size: 12px; margin: 4px 0 0 0;">El combo para una fiesta inolvidable</p>
+            </div>
+          </div>
+          <div style="padding: 0 20px;">
+            <p style="color: #FFFFFF90; font-size: 13px; line-height: 1.7; margin: 0 0 12px 0;">
+              Escucha el <em>crunch</em> de las palomitas, siente lo picosito de las Frituras y lo dulce de las gomitas que se deshacen en tu boca.
+            </p>
+          </div>
+          <div style="padding: 12px 20px 20px 20px;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; text-align: center;">
+              <div><p style="color: #FF00E5; font-size: 18px; margin: 0;">🍿</p><p style="color: #FFFFFF; font-size: 11px; font-weight: 700; margin: 4px 0 0 0;">Palomitas</p></div>
+              <div><p style="color: #00F5FF; font-size: 18px; margin: 0;">🍬</p><p style="color: #FFFFFF; font-size: 11px; font-weight: 700; margin: 4px 0 0 0;">Gomitas</p></div>
+              <div><p style="color: #FFD700; font-size: 18px; margin: 0;">🌶️</p><p style="color: #FFFFFF; font-size: 11px; font-weight: 700; margin: 4px 0 0 0;">Frituras</p></div>
+            </div>
+            <p style="color: #FFFFFF50; font-size: 11px; font-style: italic; margin: 0 0 16px 0; text-align: center; border-top: 1px solid #FF00E520; padding-top: 12px;">
+              "Los niños no se despegaron de la mesa" — Claudia, Villa del Real 5a ✨
+            </p>
+            <a href="https://wa.me/525619628908?text=Hola!%20Quiero%20cotizar%20la%20Mesa%20de%20Dulces%20para%20mi%20fiesta" target="_blank" style="background: linear-gradient(90deg, #FF00E5, #00F5FF); color: #0A0A0F; padding: 14px 20px; border-radius: 10px; font-weight: 900; text-decoration: none; font-size: 14px; display: block; text-align: center; box-shadow: 0 0 30px #FF00E550;">
+              QUIERO MI FIESTA ASÍ ➜
             </a>
           </div>
         </div>
