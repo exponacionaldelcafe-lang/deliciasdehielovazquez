@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delicias de Hielo Vázquez | Sabor Frío de Villa del Real</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tilt+Neon&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      /* === BASE === */
+      * { box-sizing: border-box; }
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #0A0A0F;
+        background-image:
+          radial-gradient(circle at 20% 80%, rgba(255,0,229,0.12) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(0,240,255,0.12) 0%, transparent 50%),
+          url('https://www.transparenttextures.com/patterns/brick-wall-dark.png');
+        color: #EAEAEA;
+      }
+      html { scroll-behavior: smooth; }
+
+      /* === TYPOGRAPHY === */
+      .font-neon { font-family: 'Tilt Neon', cursive; }
+
+      .neon-header {
+        font-family: 'Tilt Neon', cursive;
+        color: #FFF;
+        text-shadow:
+          0 0 5px #fff,
+          0 0 10px #fff,
+          0 0 25px #FF00E5,
+          0 0 50px #FF00E5;
+        animation: neon-flicker 6s infinite alternate;
+      }
+
+      .neon-subheader {
+        background: linear-gradient(90deg, #00F0FF, #FF00E5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 700;
+        filter: drop-shadow(0 0 8px rgba(0,240,255,0.5));
+      }
+
+      .neon-cyan {
+        color: #00F0FF;
+        text-shadow: 0 0 8px #00F0FF;
+      }
+      .neon-magenta {
+        color: #FF00E5;
+        text-shadow: 0 0 8px #FF00E5;
+      }
+
+      /* === CARDS === */
+      .neon-card {
+        position: relative;
+        background: rgba(10,10,15,0.65);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .neon-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 16px;
+        padding: 1.5px;
+        background: linear-gradient(135deg, #00F0FF, #FF00E5, #00F0FF);
+        -webkit-mask:
+           linear-gradient(#fff 0 0) content-box,
+           linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+                mask-composite: exclude;
+        animation: border-glow 3s linear infinite;
+        pointer-events: none;
+      }
+      .neon-card:hover {
+        transform: translateY(-4px);
+        transition: transform 0.3s ease;
+      }
+      .neon-card:hover::before {
+        animation-duration: 1.5s;
+      }
+
+      /* Card image */
+      .card-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display: block;
+      }
+      .card-body { padding: 1.5rem; }
+
+      /* === BUTTONS === */
+      .btn-neon {
+        display: inline-block;
+        font-family: 'Tilt Neon', cursive;
+        background: transparent;
+        border: 2px solid #00F0FF;
+        color: #00F0FF;
+        padding: 12px 28px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        text-shadow: 0 0 5px #00F0FF;
+        box-shadow: 0 0 12px rgba(0,240,255,0.4), inset 0 0 8px rgba(0,240,255,0.1);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .btn-neon:hover {
+        background: #00F0FF;
+        color: #0A0A0F;
+        text-shadow: none;
+        box-shadow: 0 0 25px #00F0FF, 0 0 50px rgba(0,240,255,0.4);
+      }
+      .btn-neon-sm {
+        padding: 9px 20px;
+        font-size: 0.85rem;
+      }
+      .btn-neon-magenta {
+        border-color: #FF00E5;
+        color: #FF00E5;
+        text-shadow: 0 0 5px #FF00E5;
+        box-shadow: 0 0 12px rgba(255,0,229,0.4), inset 0 0 8px rgba(255,0,229,0.1);
+      }
+      .btn-neon-magenta:hover {
+        background: #FF00E5;
+        color: #0A0A0F;
+        text-shadow: none;
+        box-shadow: 0 0 25px #FF00E5, 0 0 50px rgba(255,0,229,0.4);
+      }
+
+      /* === NAV === */
+      .nav-glass {
+        background: rgba(10,10,15,0.8);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(0,240,255,0.2);
+        border-radius: 16px;
+      }
+      .nav-link {
+        color: #EAEAEA;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s, text-shadow 0.2s;
+        letter-spacing: 0.03em;
+      }
+      .nav-link:hover {
+        color: #00F0FF;
+        text-shadow: 0 0 8px #00F0FF;
+      }
+
+      /* === SECTION DIVIDERS === */
+      .section-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #00F0FF, #FF00E5, transparent);
+        opacity: 0.4;
+        margin: 0;
+      }
+
+      /* === SABORES GRID === */
+      .sabores-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px 12px;
+        font-size: 0.82rem;
+        color: rgba(234,234,234,0.8);
+      }
+      .sabores-grid span::before { content: '· '; color: #00F0FF; }
+
+      /* === COBERTURA CARDS === */
+      .zona-card {
+        background: rgba(0,240,255,0.05);
+        border: 1px solid rgba(0,240,255,0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: border-color 0.3s, background 0.3s;
+      }
+      .zona-card:hover {
+        border-color: rgba(0,240,255,0.6);
+        background: rgba(0,240,255,0.1);
+      }
+
+      /* === PRICE TAG === */
+      .price-tag {
+        font-family: 'Tilt Neon', cursive;
+        font-size: 1.6rem;
+        color: #FF00E5;
+        text-shadow: 0 0 10px rgba(255,0,229,0.6);
+      }
+
+      /* === WA FLOAT === */
+      .wa-float {
+        background: #25D366;
+        box-shadow: 0 0 20px rgba(37,211,102,0.5);
+        transition: box-shadow 0.3s, transform 0.3s;
+      }
+      .wa-float:hover {
+        box-shadow: 0 0 35px rgba(37,211,102,0.8);
+        transform: scale(1.1);
+      }
+
+      /* === ANIMATIONS === */
+      @keyframes neon-flicker {
+        0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+        20%, 24%, 55% { opacity: 0.85; }
+      }
+      @keyframes border-glow {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.6; }
+      }
+      @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 0 15px rgba(0,240,255,0.3); }
+        50% { box-shadow: 0 0 30px rgba(0,240,255,0.6); }
+      }
+      @keyframes neon-pulse {
+        0%, 100% { opacity: 1; text-shadow: 0 0 7px #00f7ff, 0 0 14px #00f7ff, 0 0 28px #00f7ff, 0 0 56px #00f7ff; }
+        50% { opacity: 0.85; text-shadow: 0 0 4px #00f7ff, 0 0 8px #00f7ff, 0 0 16px #00f7ff; }
+      }
+      .slogan-neon {
+        color: #00f7ff;
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 7px #00f7ff, 0 0 14px #00f7ff, 0 0 28px #00f7ff, 0 0 56px #00f7ff;
+        animation: neon-pulse 2.5s ease-in-out infinite;
+        font-family: 'Tilt Neon', cursive;
+        padding: 0 1rem;
+      }
+
+      /* === NEON BACKGROUND LAYERS === */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: url('img/bg-neon-tunel.jpeg') center/cover no-repeat;
+        opacity: 0.12;
+        z-index: -2;
+        animation: tunnelZoom 25s ease-in-out infinite alternate;
+        will-change: transform;
+      }
+      body::after {
+        content: '';
+        position: fixed;
+        bottom: 5%; right: 3%;
+        width: 180px; height: 180px;
+        background: url('img/bg-neon-ghost.jpeg') center/contain no-repeat;
+        opacity: 0.08;
+        z-index: -1;
+        animation: ghostBlink 8s ease-in-out infinite;
+        will-change: opacity, filter;
+      }
+      @keyframes tunnelZoom {
+        0% { transform: scale(1) rotate(0deg); }
+        100% { transform: scale(1.15) rotate(1deg); }
+      }
+      @keyframes ghostBlink {
+        0%, 85%, 100% { opacity: 0.08; filter: none; }
+        90%, 95% { opacity: 0.3; filter: drop-shadow(0 0 15px #00f7ff) drop-shadow(0 0 30px #ff00ff); }
+      }
+
+      /* FANTASMA 2 - ARRIBA IZQUIERDA */
+      .ghost-2 {
+        position: fixed;
+        top: 15%; left: 4%;
+        width: 100px; height: 100px;
+        background: url('img/bg-neon-ghost.jpeg') center/contain no-repeat;
+        opacity: 0.05;
+        z-index: -1;
+        animation: ghostBlink 8s ease-in-out 2.5s infinite;
+        pointer-events: none;
+      }
+
+      /* FANTASMA 3 - CENTRO IZQUIERDA */
+      .ghost-3 {
+        position: fixed;
+        top: 55%; left: 2%;
+        width: 70px; height: 70px;
+        background: url('img/bg-neon-ghost.jpeg') center/contain no-repeat;
+        opacity: 0.04;
+        z-index: -1;
+        animation: ghostBlink 8s ease-in-out 5s infinite;
+        pointer-events: none;
+      }
+
+      header, main, section, footer, .container, .vitrina, .menu {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* === REVIEW CARDS === */
+      .review-card {
+        background: #1A1A2E;
+        border: 1px solid #00F5FF;
+        border-radius: 12px;
+        padding: 20px;
+        transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      }
+      .review-card:hover {
+        border-color: #00F5FF;
+        transform: translateY(-3px);
+        box-shadow: 0 0 20px rgba(0,245,255,0.25);
+      }
+      .review-stars {
+        color: #FF00E5;
+        text-shadow: 0 0 6px rgba(255,0,229,0.5);
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+      }
+      .review-name {
+        color: #00F5FF;
+        font-weight: 700;
+        text-shadow: 0 0 6px rgba(0,245,255,0.4);
+        font-size: 1rem;
+      }
+      .review-colonia {
+        color: rgba(255,255,255,0.4);
+        font-size: 0.78rem;
+      }
+      .review-text {
+        color: #FFFFFF;
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+      .review-date {
+        color: rgba(255,255,255,0.35);
+        font-size: 0.75rem;
+      }
+      .reviews-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 24px;
+      }
+      .review-summary-stars {
+        color: #FF00E5;
+        text-shadow: 0 0 10px rgba(255,0,229,0.6);
+      }
+      .btn-review-cta {
+        display: inline-block;
+        font-family: 'Tilt Neon', cursive;
+        background: #FF00E5;
+        color: #FFFFFF;
+        padding: 14px 32px;
+        border-radius: 8px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        text-decoration: none;
+        text-shadow: 0 0 5px rgba(255,255,255,0.3);
+        box-shadow: 0 0 18px rgba(255,0,229,0.5), inset 0 0 8px rgba(255,0,229,0.2);
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+      .btn-review-cta:hover {
+        background: #ff33eb;
+        box-shadow: 0 0 30px rgba(255,0,229,0.7), 0 0 60px rgba(255,0,229,0.3);
+        transform: translateY(-2px);
+      }
+
+      /* === LOGO NEON PULSE === */
+      .logo-neon-pulse {
+        background-color: #00F5FF;
+        border-radius: 50%;
+        padding: 8px;
+        animation: neonBreathing 4s ease-in-out infinite;
+        box-shadow: 0 0 20px #00F5FF80, 0 0 40px #00F5FF40;
+      }
+
+      @keyframes neonBreathing {
+        0%, 100% {
+          box-shadow: 0 0 20px #00F5FF80, 0 0 40px #00F5FF40, 0 0 60px #00F5FF20;
+          filter: brightness(1);
+        }
+        25% {
+          box-shadow: 0 0 25px #FF00E580, 0 0 50px #FF00E540, 0 0 70px #FF00E520;
+          filter: brightness(1.1);
+        }
+        50% {
+          box-shadow: 0 0 30px #00F5FF90, 0 0 60px #00F5FF50, 0 0 90px #00F5FF30;
+          filter: brightness(1.15);
+        }
+        75% {
+          box-shadow: 0 0 25px #FF00E580, 0 0 50px #FF00E540, 0 0 70px #FF00E520;
+          filter: brightness(1.1);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .logo-neon-pulse {
+          animation: none;
+          box-shadow: 0 0 25px #00F5FF80;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .sabores-grid { grid-template-columns: 1fr; }
+        .card-img { height: 180px; }
+        body::after { width: 100px; height: 100px; bottom: 25%; left: 3%; right: auto; }
+        .ghost-2 { width: 70px; height: 70px; top: 10%; }
+        .ghost-3 { display: none; }
+        body::before { opacity: 0.1; }
+        .reviews-grid { grid-template-columns: 1fr; }
+      }
+
+      .filtro-btn {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+      }
+      .filtro-btn:hover {
+        box-shadow: 0 0 12px rgba(0,245,255,0.4);
+      }
+      .producto {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .producto:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 0 20px rgba(0,245,255,0.3);
+      }
+    </style>
+</head>
+<body>
+<div class="ghost-2"></div>
+<div class="ghost-3"></div>
+
+  <!-- NAV -->
+  <nav class="fixed w-full z-50">
+    <div class="nav-glass mx-4 mt-4 px-6 py-3 shadow-2xl">
+      <div class="flex justify-between items-center max-w-7xl mx-auto">
+        <img src="img/logo.png" alt="Logo Delicias de Hielo Vázquez" class="h-12 w-auto">
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#vitrina" class="nav-link">Vitrina</a>
+          <a href="#eventos" class="nav-link">Eventos</a>
+          <a href="#cobertura" class="nav-link">Cobertura</a>
+          <a href="#reseñas" class="nav-link">Reseñas</a>
+        </div>
+        <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20pedir%20Delicias%20de%20Hielo%20🍦"
+           class="btn-neon btn-neon-sm">Pedir</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="min-h-screen flex items-center pt-32 pb-20 px-4">
+    <div class="max-w-5xl mx-auto text-center w-full">
+      <img src="img/logo.png" alt="Delicias de Hielo Vázquez" class="h-36 mx-auto mb-8 logo-neon-pulse">
+
+      <h1 class="neon-header text-5xl md:text-7xl leading-tight mb-3">
+        DELICIAS DE HIELO
+      </h1>
+      <h2 class="neon-subheader text-3xl md:text-4xl mb-8">"VÁZQUEZ"</h2>
+
+      <p class="text-base md:text-lg text-white/60 mb-10 max-w-xl mx-auto leading-relaxed">
+        Helados artesanales de Villa del Real. El sabor frío que recorre Tecámac.<br>
+        Elegante para tu evento, auténtico para tu antojo.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20pedir%20Delicias%20de%20Hielo%20🍦"
+           class="btn-neon">
+          Pedir por WhatsApp
+          <i data-lucide="arrow-right" class="inline w-4 h-4 ml-1"></i>
+        </a>
+        <a href="#eventos" class="btn-neon btn-neon-magenta">
+          Contratar para Evento
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- VITRINA -->
+  <section id="vitrina" class="py-20 px-4">
+    <div class="max-w-7xl mx-auto">
+
+      <div class="text-center mb-16">
+        <h2 class="neon-header text-4xl md:text-5xl mb-3">Vitrina VÁZQUEZ</h2>
+        <p class="neon-subheader text-base md:text-lg">73 sabores · Contando con la mejor variedad · Villa del Real</p>
+      </div>
+
+      <!-- Filtros -->
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px;">
+        <button onclick="filtrarVitrina('todos')" class="filtro-btn filtro-activo" style="background: #00F5FF; color: #0A0A0F; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Todos</button>
+        <button onclick="filtrarVitrina('mini')" class="filtro-btn" style="background: #1A1A2E; color: #00F5FF; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Mini $3</button>
+        <button onclick="filtrarVitrina('mini-cubierta')" class="filtro-btn" style="background: #1A1A2E; color: #00F5FF; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Mini Cubiertas $5</button>
+        <button onclick="filtrarVitrina('sandwich')" class="filtro-btn" style="background: #1A1A2E; color: #00F5FF; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Sándwich $12</button>
+        <button onclick="filtrarVitrina('conos')" class="filtro-btn" style="background: #1A1A2E; color: #00F5FF; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Conos $15</button>
+        <button onclick="filtrarVitrina('agua')" class="filtro-btn" style="background: #1A1A2E; color: #00F5FF; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Agua $12</button>
+        <button onclick="filtrarVitrina('leche')" class="filtro-btn" style="background: #1A1A2E; color: #00F5FF; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Leche $12</button>
+        <button onclick="filtrarVitrina('trufa')" class="filtro-btn" style="background: #1A1A2E; color: #00F5FF; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Trufa $22</button>
+        <button onclick="filtrarVitrina('especial')" class="filtro-btn" style="background: #1A1A2E; color: #00F5FF; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Especiales</button>
+        <button onclick="filtrarVitrina('congelada')" class="filtro-btn" style="background: #1A1A2E; color: #00F5FF; border: 1px solid #00F5FF; padding: 8px 16px; border-radius: 20px; font-weight: 700; font-size: 14px;">Congeladas $15</button>
+        <button onclick="filtrarVitrina('litros')" class="filtro-btn" style="background: transparent; border: 1px solid #00F5FF; color: #00F5FF; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer;">Litros $60</button>
+        <button onclick="filtrarVitrina('eventos')" class="filtro-btn" data-filter="eventos" style="background: transparent; border: 1px solid #FFD700; color: #FFD700; padding: 8px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer;">Eventos ⭐</button>
+      </div>
+
+      <div id="grid-productos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- TARJETA: SERVICIO PARA FIESTAS - SIN PRECIOS NI LÍMITES -->
+        <div id="eventos-card" data-category="eventos" class="producto eventos" style="grid-column: span 2; background: linear-gradient(135deg, #1A1A2E 0%, #0A0A0F 100%); border: 2px solid #FFD700; border-radius: 16px; overflow: hidden; box-shadow: 0 0 30px #FFD70040; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 0 50px #FFD70060'" onmouseout="this.style.boxShadow='0 0 30px #FFD70040'">
+          <div style="padding: 20px 20px 0 20px;">
+            <div style="margin-bottom: 16px;">
+              <div style="background: #FFD70020; color: #FFD700; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 8px;">SERVICIO ESTRELLA ⭐</div>
+              <h3 style="color: #FFFFFF; font-size: 22px; font-weight: 900; margin: 0;">Servicio para Fiestas y Eventos</h3>
+              <p style="color: #FFFFFF60; font-size: 12px; margin: 4px 0 0 0;">Paquetes personalizados para tu celebración</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 0 20px;">
+            <img src="/assets/helados_cups.png" alt="Vasitos decorados" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px;">
+            <img src="/assets/fresas_cups.png" alt="Vasitos fresas" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px;">
+            <img src="/assets/paletas.png" alt="Paletas surtidas" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px;">
+          </div>
+          <div style="padding: 20px;">
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; text-align: center;">
+              <div><p style="color: #FFD700; font-size: 18px; margin: 0;">🎉</p><p style="color: #FFFFFF; font-size: 11px; font-weight: 700; margin: 4px 0 0 0;">Paquetes a medida</p></div>
+              <div><p style="color: #00F5FF; font-size: 18px; margin: 0;">🍦</p><p style="color: #FFFFFF; font-size: 11px; font-weight: 700; margin: 4px 0 0 0;">73 sabores</p></div>
+              <div><p style="color: #FF00E5; font-size: 18px; margin: 0;">🚚</p><p style="color: #FFFFFF; font-size: 11px; font-weight: 700; margin: 4px 0 0 0;">Entrega en evento</p></div>
+            </div>
+            <a href="https://wa.me/525619628908?text=Hola,%20quiero%20cotizar%20servicio%20para%20evento.%20Fecha:%20%0APersonas:%20%0AProductos:%20" target="_blank" style="background: linear-gradient(90deg, #FFD700, #FF00E5); color: #0A0A0F; padding: 14px 20px; border-radius: 10px; font-weight: 900; text-decoration: none; font-size: 14px; display: block; text-align: center; box-shadow: 0 0 30px #FFD70050;">
+              COTIZAR MI EVENTO
+            </a>
+          </div>
+        </div>
+
+        <!-- MINI PALETAS $3 -->
+        <div class="neon-card producto mini">
+          <img src="img/minis.png" alt="Mini Paletas" class="card-img">
+          <div class="card-body">
+            <h3 class="font-neon text-lg text-white mb-1">Mini Paletas</h3>
+            <p class="price-tag mb-3">$3</p>
+            <p class="text-sm text-white/50 mb-4">Sabores de agua y leche. Cambian semanalmente.</p>
+            <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20Mini%20Paletas" class="btn-neon btn-neon-sm w-full text-center block">Pedir ahora</a>
+          </div>
+        </div>
+
+        <!-- MINI CUBIERTAS $5 -->
+        <div class="neon-card producto mini-cubierta">
+          <img src="img/minicub.png" alt="Mini Paletas Cubiertas" class="card-img">
+          <div class="card-body">
+            <h3 class="font-neon text-lg text-white mb-1">Mini Cubiertas</h3>
+            <p class="price-tag mb-3">$5</p>
+            <p class="text-sm text-white/50 mb-4">Cubiertas de chocolate. Sabor sorpresa.</p>
+            <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20Mini%20Cubiertas" class="btn-neon btn-neon-sm w-full text-center block">Pedir ahora</a>
+          </div>
+        </div>
+
+        <!-- SÁNDWICH $12 -->
+        <div class="neon-card producto sandwich">
+          <img src="img/sand.png" alt="Sándwich Helado" class="card-img">
+          <div class="card-body">
+            <h3 class="font-neon text-lg text-white mb-1">Sándwich Helado</h3>
+            <p class="price-tag mb-3">$12</p>
+            <div class="sabores-grid mb-4">
+              <span>Fresa</span><span>Vainilla</span><span>Chocolate</span><span>Nuez</span>
+            </div>
+            <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20Sándwich%20Helado" class="btn-neon btn-neon-sm w-full text-center block">Pedir ahora</a>
+          </div>
+        </div>
+
+        <!-- CONOS $15 -->
+        <div class="neon-card producto conos">
+          <img src="img/conos.png" alt="Conos Cubiertos" class="card-img">
+          <div class="card-body">
+            <h3 class="font-neon text-lg text-white mb-1">Conos Cubiertos</h3>
+            <p class="price-tag mb-3">$15</p>
+            <div class="sabores-grid mb-4">
+              <span>Fresa</span><span>Vainilla</span><span>Chocolate</span><span>Nuez</span><span>Café</span><span>Beso Ángel</span>
+            </div>
+            <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20Conos" class="btn-neon btn-neon-sm w-full text-center block">Pedir ahora</a>
+          </div>
+        </div>
+
+        <!-- PALETAS AGUA $12 -->
+        <div class="neon-card producto agua md:col-span-2">
+          <img src="img/agua.png" alt="Paletas de Agua" class="card-img" style="height:220px;">
+          <div class="card-body">
+            <h3 class="font-neon text-xl text-white mb-1">Paletas de Agua</h3>
+            <p class="price-tag mb-3">$12</p>
+            <div class="sabores-grid mb-4" style="grid-template-columns: repeat(3,1fr);">
+              <span>Fresa</span><span>Limón</span><span>Chamoy</span>
+              <span>Tamarindo</span><span>Grosella</span><span>Guayaba</span>
+              <span>Guanábana</span><span>Uva</span><span>Chicle</span>
+              <span>Mango</span><span>Limón c/chamoy</span><span>Mango c/chamoy</span>
+              <span>Sandía</span><span>Melón</span>
+            </div>
+            <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20Paletas%20de%20Agua" class="btn-neon btn-neon-sm w-full text-center block">Pedir ahora</a>
+          </div>
+        </div>
+
+        <!-- PALETAS LECHE $12 -->
+        <div class="neon-card producto leche md:col-span-2">
+          <img src="img/leche.png" alt="Paletas de Leche" class="card-img" style="height:220px;">
+          <div class="card-body">
+            <h3 class="font-neon text-xl text-white mb-1">Paletas de Leche</h3>
+            <p class="price-tag mb-3">$12</p>
+            <div class="sabores-grid mb-4" style="grid-template-columns: repeat(3,1fr);">
+              <span>Arroz c/leche</span><span>Fresas c/crema</span><span>Queso c/zarzamora</span>
+              <span>Nuez</span><span>Fresa leche</span><span>Galleta Oreo</span>
+              <span>Rompope</span><span>Mamey</span><span>Coco</span>
+              <span>Chocolate</span><span>Algodón azúcar</span><span>Pistache</span>
+              <span>Chocochips</span>
+            </div>
+            <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20Paletas%20de%20Leche" class="btn-neon btn-neon-sm w-full text-center block">Pedir ahora</a>
+          </div>
+        </div>
+
+        <!-- TRUFA $22 -->
+        <div class="neon-card producto trufa">
+          <img src="img/trufa.png" alt="Paletas Trufa" class="card-img">
+          <div class="card-body">
+            <h3 class="font-neon text-lg text-white mb-1">Trufa Chocolate</h3>
+            <p class="price-tag mb-3">$22</p>
+            <div class="sabores-grid mb-4">
+              <span>Nescafé</span><span>Vainilla</span><span>Chocolate</span>
+            </div>
+            <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20Paletas%20Trufa" class="btn-neon btn-neon-sm w-full text-center block">Pedir ahora</a>
+          </div>
+        </div>
+
+        <!-- ESPECIALES $22 -->
+        <div class="neon-card producto especial md:col-span-3">
+          <img src="img/esp.png" alt="Paletas Especiales" class="card-img" style="height:220px;">
+          <div class="card-body">
+            <div style="background: #1A1A2E; border: 1px solid #00F5FF; border-radius: 12px; padding: 20px;">
+              <h3 style="color: #00F5FF; font-size: 18px; margin-bottom: 16px;">Especiales de Crema $22</h3>
+
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; font-size: 14px; color: #FFFFFF; margin-bottom: 16px;">
+                <span>Fresas con crema</span>
+                <span>Queso Philadelphia</span>
+                <span>Piñón</span>
+                <span>Pistache</span>
+                <span>Nuez</span>
+                <span>Galletas</span>
+                <span>Arroz</span>
+                <span>Chongos</span>
+                <span>Gansito</span>
+                <span></span>
+                <span>Mamey</span>
+                <span>Fresa leche</span>
+              </div>
+
+              <div style="border-top: 1px solid #00F5FF40; padding-top: 12px; font-size: 14px; color: #FFFFFF;">
+                <p style="margin: 4px 0;">Queso Philadelphia con zarzamora</p>
+                <p style="margin: 4px 0;">Queso Philadelphia con fresa</p>
+                <p style="margin: 4px 0;">Nescafé con almendras</p>
+                <p style="margin: 4px 0;">Chemisse de fresa</p>
+                <p style="margin: 4px 0;">Vainilla con huevito kinder</p>
+              </div>
+            </div>
+            <a href="https://wa.me/525534881216?text=Hola!%20Quiero%20pedir%20Especiales%20de%20Crema" class="btn-neon btn-neon-sm w-full text-center block mt-4">PEDIR AHORA</a>
+          </div>
+        </div>
+
+        <!-- CONGELADAS $15 - BLOQUE ÚNICO -->
+        <div class="producto congelada congelada-destacado" style="background: #1A1A2E; border: 2px solid #00F5FF; border-radius: 16px; padding: 0; margin-bottom: 32px; overflow: hidden; box-shadow: 0 0 30px #00F5FF40; grid-column: 1 / -1;">
+          <img src="/assets/congeladas-vazquez.jpg" alt="Congeladas $15 Delicias de Hielo Vázquez" loading="lazy" style="width: 100%; height: 200px; object-fit: cover; display: block;">
+          <div style="padding: 24px 20px;">
+            <h3 style="color: #00F5FF; font-size: 24px; margin-bottom: 16px; font-weight: 700; text-align: center;">Congeladas $15</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px 24px; margin-bottom: 16px;">
+              <p style="color: #FFFFFF; font-size: 15px; margin: 0;">Rompope</p>
+              <p style="color: #FFFFFF; font-size: 15px; margin: 0;">Coco</p>
+              <p style="color: #FFFFFF; font-size: 15px; margin: 0;">Fresa de leche</p>
+              <p style="color: #FFFFFF; font-size: 15px; margin: 0;">Limón</p>
+              <p style="color: #FFFFFF; font-size: 15px; margin: 0;">Mora azul</p>
+              <p style="color: #FFFFFF; font-size: 15px; margin: 0;">Galleta</p>
+            </div>
+            <p style="color: #FFFFFF80; font-size: 12px; text-align: center; margin: 16px 0;">*A excepción de Rompope, los sabores pueden variar según disponibilidad.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid #00F5FF40;">
+              <p style="color: #FF00E5; font-size: 28px; font-weight: 700; margin: 0;">$15</p>
+              <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20pedir%20Congeladas%20$15" target="_blank" style="background: #00F5FF; color: #0A0A0F; padding: 12px 24px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 14px;">
+                PEDIR AHORA
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- TARJETA: HELADOS Y NIEVES - PREMIUM -->
+        <div id="litros" class="producto litros" style="background: #1A1A2E; border: 2px solid #00F5FF; border-radius: 14px; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 0 15px #00F5FF30; grid-column: 1 / -1;" onmouseover="this.style.boxShadow='0 0 30px #00F5FF60'; this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='0 0 15px #00F5FF30'; this.style.transform='translateY(0)'">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px; background: #0A0A0F;">
+            <img src="/assets/joel-vasos.jpeg" alt="Vasos $12" style="width: 100%; height: 190px; object-fit: cover;">
+            <img src="/assets/joel-litros.jpeg" alt="Litros $60" style="width: 100%; height: 190px; object-fit: cover;">
+          </div>
+          <div style="padding: 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
+              <div>
+                <div style="background: #00F5FF20; color: #00F5FF; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; display: inline-block; margin-bottom: 8px;">NUEVO 🔥</div>
+                <h3 style="color: #FFFFFF; font-size: 18px; font-weight: 800; margin: 0;">Helados y Nieves</h3>
+                <p style="color: #FFFFFF60; font-size: 11px; margin: 4px 0 0 0;">15 sabores disponibles</p>
+              </div>
+              <div style="text-align: right;">
+                <p style="color: #FFFFFF60; font-size: 11px; margin: 0;">Hasta</p>
+                <p style="color: #FFD700; font-size: 22px; font-weight: 900; margin: 0;">$60</p>
+              </div>
+            </div>
+            <p style="color: #FFFFFF80; font-size: 12px; margin: 0 0 14px 0; line-height: 1.5;">
+              <span style="color: #00F5FF; font-weight: 700;">Vaso $12</span> •
+              <span style="color: #FF00E5; font-weight: 700;">½ L $30</span> •
+              <span style="color: #FFD700; font-weight: 700;">1 L $60</span>
+            </p>
+            <div style="margin: 14px 0; padding: 12px 0; border-top: 1px solid #00F5FF20; border-bottom: 1px solid #00F5FF20;">
+              <details style="cursor: pointer;">
+                <summary style="color: #FFD700; font-size: 13px; font-weight: 700; margin-bottom: 10px; list-style: none; display: flex; justify-content: space-between; align-items: center;">
+                  <span>🍦 Ver 15 sabores disponibles</span>
+                  <span style="color: #00F5FF; font-size: 16px;">▼</span>
+                </summary>
+                <div style="margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                  <div>
+                    <p style="color: #00F5FF; font-size: 12px; font-weight: 700; margin: 0 0 6px 0;">🍋 FRUTALES</p>
+                    <p style="color: #FFFFFF90; font-size: 11px; line-height: 1.8; margin: 0;">
+                      Limón<br>Mango Chamoy<br>Fresa<br>Tamarindo<br>Guayaba
+                    </p>
+                  </div>
+                  <div>
+                    <p style="color: #FF00E5; font-size: 12px; font-weight: 700; margin: 0 0 6px 0;">🍫 ESPECIALES</p>
+                    <p style="color: #FFFFFF90; font-size: 11px; line-height: 1.8; margin: 0;">
+                      Huevito Kinder<br>Galleta Oreo<br>Gansito<br>Chocolate Snickers<br>Choco Avellana<br>Beso de Ángel<br>Algodón de Azúcar<br>Café<br>Nuez
+                    </p>
+                  </div>
+                </div>
+              </details>
+            </div>
+            <div style="border-top: 1px solid #00F5FF20; padding-top: 12px;">
+              <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20un%20Litro%20de%20Helado.%20Sabor:" target="_blank" style="background: linear-gradient(90deg, #00F5FF, #FFD700); color: #0A0A0F; padding: 12px 20px; border-radius: 8px; font-weight: 900; text-decoration: none; font-size: 13px; display: block; text-align: center; box-shadow: 0 0 20px #FFD70050;">PEDIR LITRO POR WHATSAPP</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- EVENTOS -->
+  <section id="eventos" class="py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="neon-header text-4xl md:text-5xl mb-6">Subimos de nivel tu evento</h2>
+      <p class="text-white/60 mb-10 text-lg max-w-2xl mx-auto leading-relaxed">
+        El mismo heladero de Villa del Real, ahora en versión ejecutiva.<br>
+        Para escuelas, fiestas, expos y todos los eventos que requieran refrescarse
+      </p>
+      <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20cotizar%20Delicias%20de%20Hielo%20para%20un%20evento"
+         class="btn-neon btn-neon-magenta text-lg px-10 py-4">
+        Cotizar Evento
+        <i data-lucide="calendar" class="inline w-5 h-5 ml-2"></i>
+      </a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- COBERTURA -->
+  <section id="cobertura" class="py-20 px-4">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="neon-header text-4xl md:text-5xl mb-4">Nuestra Zona</h2>
+      <p class="neon-subheader text-base mb-14">Nacimos en Villa del Real. Rodamos por sus alrededores.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div class="zona-card">
+          <i data-lucide="map-pin" class="w-10 h-10 mx-auto mb-3 neon-cyan"></i>
+          <h3 class="font-neon text-lg text-white mb-1">Villa del Real</h3>
+          <p class="text-sm text-white/50">6 Secciones</p>
+        </div>
+        <div class="zona-card">
+          <i data-lucide="clock" class="w-10 h-10 mx-auto mb-3 neon-magenta"></i>
+          <h3 class="font-neon text-lg text-white mb-1">2pm – 8pm</h3>
+          <p class="text-sm text-white/50">Todos los días</p>
+          <p style="font-size: 12px; color: #FFFFFF80; margin-top: 8px;">¿Estás fuera de zona? Mándame WhatsApp y vemos si llegamos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- RESEÑAS -->
+  <section id="reseñas" style="padding: 48px 16px; background: #0A0A0F; font-family: 'Poppins', sans-serif;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h2 style="color: #00F5FF; font-size: 32px; text-align: center; margin-bottom: 8px; font-weight: 700;">Lo que dice la banda de Villa del Real</h2>
+      <p style="color: #FFFFFF; text-align: center; margin-bottom: 32px; font-size: 18px;">4.9 <span class="review-summary-stars">★★★★★</span> de 47 vecinos nos recomiendan</p>
+
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-stars mb-2">★★★★★</div>
+          <div class="review-name">Doña Mary</div>
+          <div class="review-colonia mb-2">Villa del Real 3ra</div>
+          <p class="review-text mb-3">Mis nietos ya no dejan pasar a Joel. Las de queso con zarzamora son las buenas. Siempre llega fría la paleta y con una sonrisa.</p>
+          <div class="review-date">hace 2 semanas</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars mb-2">★★★★★</div>
+          <div class="review-name">El Chino</div>
+          <div class="review-colonia mb-2">Villa del Real 1ra</div>
+          <p class="review-text mb-3">Pedí 30 mini paletas para la reta del domingo. Llegó a tiempo y bien heladas. La banda quedó feliz. 100% recomendado.</p>
+          <div class="review-date">hace 1 semana</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars mb-2">★★★★★</div>
+          <div class="review-name">Karen S.</div>
+          <div class="review-colonia mb-2">Los Héroes Tecámac</div>
+          <p class="review-text mb-3">Soy de al lado y sí me trajo el pedido. La de gansito está brutal. Ya no corro la van, ahora ella me corretea a mí 😂</p>
+          <div class="review-date">hace 3 días</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars mb-2">★★★★★</div>
+          <div class="review-name">Don Pepe</div>
+          <div class="review-colonia mb-2">Villa del Real 6ta</div>
+          <p class="review-text mb-3">30 años viviendo aquí y estas son las paletas que más se parecen a las de antes. Las de mamey son las originales. Felicidades mijo.</p>
+          <div class="review-date">hace 5 días</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars mb-2">★★★★★</div>
+          <div class="review-name">Bryan A.</div>
+          <div class="review-colonia mb-2">Ojo de Agua</div>
+          <p class="review-text mb-3">Le caímos a Joel para el bautizo. Se rifó con el carrito y los niños no lo soltaron. Servicio de 10, sabor de 100.</p>
+          <div class="review-date">hace 1 semana</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars mb-2">★★★★★</div>
+          <div class="review-name">Lupita R.</div>
+          <div class="review-colonia mb-2">Villa del Real 2da</div>
+          <p class="review-text mb-3">La de fresas con crema parece que trae fresas de verdad. No agua pintada. Vale cada peso. Ya lo agregué a favoritos.</p>
+          <div class="review-date">hace 4 días</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-stars mb-2">★★★★★</div>
+          <div class="review-name">Mike</div>
+          <div class="review-colonia mb-2">Santa Cruz</div>
+          <p class="review-text mb-3">Trabajo en obra y Joel nos surte en el jale. Las de limón quitan la sed machín. Puntual y derecho el compa.</p>
+          <div class="review-date">hace 2 días</div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20dejar%20mi%20rese%C3%B1a%20de%205%20estrellas%20para%20La%20Van%20Negra:%20" target="_blank" style="display: block; background: #FF00E5; color: #0A0A0F; text-align: center; padding: 16px; border-radius: 8px; font-weight: 700; margin-top: 24px; text-decoration: none;">
+        Deja tu reseña y ayúdanos a rodar más
+      </a>
+      <p style="color: #FFFFFF80; text-align: center; font-size: 12px; margin-top: 8px;">Tu opinión hace que La Van Negra llegue más lejos. Gracias, vecino.</p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FOOTER -->
+  <footer class="py-16 px-4" style="background: rgba(5,5,10,0.9);">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 mb-12">
+        <div>
+          <img src="img/logo.png" alt="Logo" class="h-14 mb-5" style="filter: drop-shadow(0 0 12px rgba(0,240,255,0.3));">
+          <p class="text-white/40 text-sm">Sabor frío de Villa del Real</p>
+        </div>
+        <div>
+          <h4 class="font-neon text-lg mb-4 neon-cyan">Contacto Directo</h4>
+          <a href="https://wa.me/525619628908" class="block text-white/60 hover:text-white mb-2 text-sm transition">WhatsApp: 56 1962 8908</a>
+          <p class="text-white/40 text-sm">Villa del Real, Tecámac, Edo. Méx.</p>
+        </div>
+      </div>
+      <div class="section-divider mb-8"></div>
+      <p class="text-center text-white/30 text-sm">
+        © 2026 Delicias de Hielo Vázquez — Artesanal. De Villa del Real para Tecámac.
+      </p>
+      <p class="slogan-neon mt-8">
+        "No es sólo un negocio es una paletería en movimiento"
+      </p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/525619628908?text=Hola%20Joel,%20quiero%20pedir%20Delicias%20de%20Hielo%20🍦"
+     class="fixed bottom-6 right-6 z-50 wa-float text-white w-16 h-16 rounded-full flex items-center justify-center">
+    <i data-lucide="message-circle" class="w-8 h-8"></i>
+  </a>
+
+  <script>lucide.createIcons();</script>
+  <script>
+    function filtrarVitrina(cat) {
+      var items = document.querySelectorAll('#grid-productos > *');
+      var btns = document.querySelectorAll('.filtro-btn');
+      btns.forEach(function(b) {
+        b.style.background = '#1A1A2E';
+        b.style.color = '#00F5FF';
+        b.classList.remove('filtro-activo');
+      });
+      event.currentTarget.style.background = '#00F5FF';
+      event.currentTarget.style.color = '#0A0A0F';
+      event.currentTarget.classList.add('filtro-activo');
+      items.forEach(function(el) {
+        if (cat === 'todos') {
+          el.style.display = '';
+        } else if (el.classList.contains(cat)) {
+          el.style.display = '';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
