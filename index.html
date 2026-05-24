@@ -411,6 +411,47 @@
         .reviews-grid { grid-template-columns: 1fr; }
       }
 
+      /* === INSTRUCTIONAL NEON BUTTON === */
+      .btn-instructivo-neon {
+        width: 100%;
+        padding: 12px 16px;
+        margin: 16px 0 8px 0;
+        background: linear-gradient(90deg, #00F5FF 0%, #FF00FF 100%);
+        color: #000;
+        font-weight: 900;
+        font-size: 14px;
+        text-align: center;
+        border: 2px solid #FFF;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow:
+          0 0 10px #00F5FF,
+          0 0 20px #FF00FF,
+          inset 0 0 5px rgba(255,255,255,0.5);
+        animation: pulso-neon 2s infinite;
+        cursor: default;
+      }
+
+      @keyframes pulso-neon {
+        0%, 100% {
+          transform: scale(1);
+          box-shadow: 0 0 10px #00F5FF, 0 0 20px #FF00FF, inset 0 0 5px rgba(255,255,255,0.5);
+        }
+        50% {
+          transform: scale(1.02);
+          box-shadow: 0 0 20px #00F5FF, 0 0 40px #FF00FF, inset 0 0 10px rgba(255,255,255,0.8);
+        }
+      }
+
+      @media (min-width: 768px) {
+        .btn-instructivo-neon {
+          font-size: 16px;
+          max-width: 500px;
+          margin: 20px auto 10px auto;
+        }
+      }
+
       .filtro-btn {
         cursor: pointer;
         transition: all 0.3s ease;
@@ -485,6 +526,8 @@
         <h2 class="neon-header text-4xl md:text-5xl mb-3">Vitrina VÁZQUEZ</h2>
         <p class="neon-subheader text-base md:text-lg">73 sabores · Contando con la mejor variedad · Villa del Real</p>
       </div>
+
+      <div class="btn-instructivo-neon">Elige tu producto favorito y pide por WhatsApp</div>
 
       <!-- Filtros -->
       <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px;">
