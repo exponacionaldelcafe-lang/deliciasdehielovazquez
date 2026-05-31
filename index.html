@@ -411,6 +411,16 @@
         .reviews-grid { grid-template-columns: 1fr; }
       }
 
+      /* FIX MÓVIL: en pantallas chicas la vitrina es de 1 columna.
+         Las tarjetas con "grid-column: span 2" forzaban una columna extra
+         del ancho de la imagen, desbordaban la pantalla y recortaban la
+         primera imagen ("Vasitos decorados") y tarjetas de productos.
+         Aquí obligamos a cada tarjeta a ocupar el ancho completo. */
+      @media (max-width: 767px) {
+        #grid-productos { grid-template-columns: minmax(0, 1fr); }
+        #grid-productos > * { grid-column: 1 / -1 !important; }
+      }
+
       /* === INSTRUCTIONAL NEON BUTTON === */
       .btn-instructivo-neon {
         width: 100%;
@@ -558,9 +568,9 @@
             </div>
           </div>
           <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 0 20px;">
-            <img src="/assets/helados_cups.png" alt="Vasitos decorados" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px;">
-            <img src="/assets/fresas_cups.png" alt="Vasitos fresas" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px;">
-            <img src="/assets/paletas.png" alt="Paletas surtidas" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px;">
+            <img src="/assets/helados_cups.png" alt="Vasitos decorados" loading="lazy" decoding="async" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px;">
+            <img src="/assets/fresas_cups.png" alt="Vasitos fresas" loading="lazy" decoding="async" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px;">
+            <img src="/assets/paletas.png" alt="Paletas surtidas" loading="lazy" decoding="async" style="width: 100%; height: 140px; object-fit: cover; border-radius: 8px;">
           </div>
           <div style="padding: 20px;">
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; text-align: center;">
@@ -580,9 +590,9 @@
             <div style="margin-bottom: 16px;">
               <h3 style="color: #FFFFFF; font-size: 22px; font-weight: 900; margin: 0;">Mesa de Dulces</h3>
               <div style="display:flex;gap:8px;margin:12px 0 15px 0;">
-                <img src="/assets/mesa-botanas.png" alt="Palomitas acarameladas" style="width:32%;border-radius:6px;object-fit:cover;height:90px;border:1px solid #E91E63;">
-                <img src="/assets/mesa-dulces.png" alt="Gomitas surtidas" style="width:32%;border-radius:6px;object-fit:cover;height:90px;border:1px solid #E91E63;">
-                <img src="/assets/mesa-palomitas.png" alt="Frituras" style="width:32%;border-radius:6px;object-fit:cover;height:90px;border:1px solid #E91E63;">
+                <img src="/assets/mesa-botanas.png" alt="Palomitas acarameladas" loading="lazy" decoding="async" style="width:32%;border-radius:6px;object-fit:cover;height:90px;border:1px solid #E91E63;">
+                <img src="/assets/mesa-dulces.png" alt="Gomitas surtidas" loading="lazy" decoding="async" style="width:32%;border-radius:6px;object-fit:cover;height:90px;border:1px solid #E91E63;">
+                <img src="/assets/mesa-palomitas.png" alt="Frituras" loading="lazy" decoding="async" style="width:32%;border-radius:6px;object-fit:cover;height:90px;border:1px solid #E91E63;">
               </div>
               <p style="color: #FFFFFF60; font-size: 12px; margin: 4px 0 0 0;">El combo para una fiesta inolvidable</p>
             </div>
@@ -609,7 +619,7 @@
 
         <!-- MINI PALETAS $3 -->
         <div class="neon-card producto mini">
-          <img src="img/minis.png" alt="Mini Paletas" class="card-img">
+          <img src="img/minis.png" alt="Mini Paletas" loading="lazy" decoding="async" class="card-img">
           <div class="card-body">
             <h3 class="font-neon text-lg text-white mb-1">Mini Paletas</h3>
             <p class="price-tag mb-3">$3</p>
@@ -620,7 +630,7 @@
 
         <!-- MINI CUBIERTAS $5 -->
         <div class="neon-card producto mini-cubierta">
-          <img src="img/minicub.png" alt="Mini Paletas Cubiertas" class="card-img">
+          <img src="img/minicub.png" alt="Mini Paletas Cubiertas" loading="lazy" decoding="async" class="card-img">
           <div class="card-body">
             <h3 class="font-neon text-lg text-white mb-1">Mini Cubiertas</h3>
             <p class="price-tag mb-3">$5</p>
@@ -631,7 +641,7 @@
 
         <!-- SÁNDWICH $12 -->
         <div class="neon-card producto sandwich">
-          <img src="img/sand.png" alt="Sándwich Helado" class="card-img">
+          <img src="img/sand.png" alt="Sándwich Helado" loading="lazy" decoding="async" class="card-img">
           <div class="card-body">
             <h3 class="font-neon text-lg text-white mb-1">Sándwich Helado</h3>
             <p class="price-tag mb-3">$12</p>
@@ -644,7 +654,7 @@
 
         <!-- CONOS $15 -->
         <div class="neon-card producto conos">
-          <img src="img/conos.png" alt="Conos Cubiertos" class="card-img">
+          <img src="img/conos.png" alt="Conos Cubiertos" loading="lazy" decoding="async" class="card-img">
           <div class="card-body">
             <h3 class="font-neon text-lg text-white mb-1">Conos Cubiertos</h3>
             <p class="price-tag mb-3">$15</p>
@@ -657,7 +667,7 @@
 
         <!-- PALETAS AGUA $12 -->
         <div class="neon-card producto agua md:col-span-2">
-          <img src="img/agua.png" alt="Paletas de Agua" class="card-img" style="height:220px;">
+          <img src="img/agua.png" alt="Paletas de Agua" loading="lazy" decoding="async" class="card-img" style="height:220px;">
           <div class="card-body">
             <h3 class="font-neon text-xl text-white mb-1">Paletas de Agua</h3>
             <p class="price-tag mb-3">$12</p>
@@ -674,7 +684,7 @@
 
         <!-- PALETAS LECHE $12 -->
         <div class="neon-card producto leche md:col-span-2">
-          <img src="img/leche.png" alt="Paletas de Leche" class="card-img" style="height:220px;">
+          <img src="img/leche.png" alt="Paletas de Leche" loading="lazy" decoding="async" class="card-img" style="height:220px;">
           <div class="card-body">
             <h3 class="font-neon text-xl text-white mb-1">Paletas de Leche</h3>
             <p class="price-tag mb-3">$12</p>
@@ -691,7 +701,7 @@
 
         <!-- TRUFA $22 -->
         <div class="neon-card producto trufa">
-          <img src="img/trufa.png" alt="Paletas Trufa" class="card-img">
+          <img src="img/trufa.png" alt="Paletas Trufa" loading="lazy" decoding="async" class="card-img">
           <div class="card-body">
             <h3 class="font-neon text-lg text-white mb-1">Trufa Chocolate</h3>
             <p class="price-tag mb-3">$22</p>
@@ -704,7 +714,7 @@
 
         <!-- ESPECIALES $22 -->
         <div class="neon-card producto especial md:col-span-3">
-          <img src="img/esp.png" alt="Paletas Especiales" class="card-img" style="height:220px;">
+          <img src="img/esp.png" alt="Paletas Especiales" loading="lazy" decoding="async" class="card-img" style="height:220px;">
           <div class="card-body">
             <div style="background: #1A1A2E; border: 1px solid #00F5FF; border-radius: 12px; padding: 20px;">
               <h3 style="color: #00F5FF; font-size: 18px; margin-bottom: 16px;">Especiales de Crema $22</h3>
@@ -762,8 +772,8 @@
         <!-- TARJETA: HELADOS Y NIEVES - PREMIUM -->
         <div id="litros" class="producto litros" style="background: #1A1A2E; border: 2px solid #00F5FF; border-radius: 14px; overflow: hidden; transition: all 0.3s ease; box-shadow: 0 0 15px #00F5FF30; grid-column: 1 / -1;" onmouseover="this.style.boxShadow='0 0 30px #00F5FF60'; this.style.transform='translateY(-4px)'" onmouseout="this.style.boxShadow='0 0 15px #00F5FF30'; this.style.transform='translateY(0)'">
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3px; background: #0A0A0F;">
-            <img src="/assets/joel-vasos.jpeg" alt="Vasos $12" style="width: 100%; height: 190px; object-fit: cover;">
-            <img src="/assets/joel-litros.jpeg" alt="Litros $60" style="width: 100%; height: 190px; object-fit: cover;">
+            <img src="/assets/joel-vasos.jpeg" alt="Vasos $12" loading="lazy" decoding="async" style="width: 100%; height: 190px; object-fit: cover;">
+            <img src="/assets/joel-litros.jpeg" alt="Litros $60" loading="lazy" decoding="async" style="width: 100%; height: 190px; object-fit: cover;">
           </div>
           <div style="padding: 18px;">
             <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px;">
